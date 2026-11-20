@@ -171,16 +171,13 @@ Name='EchoImage';
 
 
 for k=1:size(im,4)
-    %dataToSave = circshift(im(:,:,:,k), [-1,-1,-1]);
-    %dataToSave = squeeze(dataToSave);
-
+   
 
     % create nifti file
     nifti_file_name= [full_output_folder '/' Name '_' sprintf('%.3d',k) '.nii'];
     res=[connection.header.encoding.reconSpace.fieldOfView_mm.x/matrixSize(1) connection.header.encoding.reconSpace.fieldOfView_mm.y/matrixSize(2) connection.header.encoding.reconSpace.fieldOfView_mm.z/matrixSize(3)]
     gadgetron.custom.utils.create_nifti_volume(abs(im(:,:,:,k)),nifti_file_name,reference_header(acquisition),res,matrixSize,Orientation)
-    % createNifti(abs(im(:,:,:,k)),nifti_file_name);
-    disp("create_and_save_nifti setup...")
+     disp("create_and_save_nifti setup...")
 end
 
 
